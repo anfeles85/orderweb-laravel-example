@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date('legalization_date')->comment('fecha legalización');
             $table->string('address', 50)->comment('dirección');
             $table->string('city', 50)->comment('ciudad');
-            $table->foreignId('observation_id')->constrained("observation")->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('causal_id')->constrained("causal")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('observation_id')->nullable()->constrained("observation")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('causal_id')->nullable()->constrained("causal")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
