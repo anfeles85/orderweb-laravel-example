@@ -1,0 +1,50 @@
+h1{
+    color: brown;
+    font-weight: bold;
+}
+
+button{
+    background-color: darkblue;
+    color:aliceblue;
+}
+
+q{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.img_banner
+{   
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer
+{   
+    margin: 0 auto;
+    font-style: italic;
+    font-size: small;
+    color: gray;
+}
+
+.vertical-menu {
+    width: 200px;
+}
+  
+.vertical-menu a {
+    background-color: #eee; 
+    color: black; 
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; 
+}
+
+.vertical-menu a.active {
+    background-color: #04AA6D; 
+    color: white;
+}
