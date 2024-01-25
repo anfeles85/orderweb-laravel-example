@@ -1,8 +1,8 @@
 @extends('templates.base')
 
-@section('title', 'Crear causal')
+@section('title', 'Crear tipo actividad')
 
-@section('header', 'Crear causal')
+@section('header', 'Crear tipo actividad')
 
 @section('content')
     @include('templates/messages')
@@ -22,7 +22,7 @@
                         <button type="submit" class="btn btn-primary btn-block">Guardar</button>
                     </div>
                     <div class="col-lg-6 mb-4">
-                        <a href="{{ route('causal.index') }}" class="btn btn-secondary btn-block">Cancelar</a>
+                        <a href="{{ route('type_activity.index') }}" class="btn btn-secondary btn-block">Cancelar</a>
                     </div>
                 </div>                                
             </form>
