@@ -1,13 +1,13 @@
 @extends('templates.base')
 
-@section('title', 'Listado tipo actividades')
+@section('title', 'Listado actividades')
 
-@section('header', 'Listado tipo actividades')
+@section('header', 'Listado actividades')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">            
-            <a href="{{ route('type_activity.create') }}" class="btn btn-primary">Crear</a>                   
+            <a href="{{ route('activity.create') }}" class="btn btn-primary">Crear</a>                   
         </div>
     </div>
 
@@ -20,13 +20,19 @@
                     <tr>
                         <th>Id</th>
                         <th>Descripción</th>
+                        <th>Horas</th>
+                        <th>Técnico</th>
+                        <th>Tipo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>                   
                     <tr>
                         <td>1</td>
-                        <td>Tipo prueba</td>
+                        <td>Actividad prueba</td>
+                        <td>8</td>
+                        <td>Arnulfo Archundia</td>
+                        <td>REPARACION</td>
                         <td>
                             <a href="#" title="editar" class="btn btn-primary btn-circle btn-sm">
                                 <i class="far fa-edit"></i>

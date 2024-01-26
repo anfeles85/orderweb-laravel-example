@@ -1,13 +1,13 @@
 @extends('templates.base')
 
-@section('title', 'Listado tipo actividades')
+@section('title', 'Listado órdenes')
 
-@section('header', 'Listado tipo actividades')
+@section('header', 'Listado órdenes')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">            
-            <a href="{{ route('type_activity.create') }}" class="btn btn-primary">Crear</a>                   
+            <a href="{{ route('order.create') }}" class="btn btn-primary">Crear</a>                   
         </div>
     </div>
 
@@ -19,14 +19,22 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Descripción</th>
+                        <th>Fecha legalización</th>
+                        <th>Dirección</th>
+                        <th>Ciudad</th>
+                        <th>Observación</th>
+                        <th>Causal</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>                   
                     <tr>
                         <td>1</td>
-                        <td>Tipo prueba</td>
+                        <td>Orden prueba</td>
+                        <td>Cra 1</td>
+                        <td>Tuluá</td>
+                        <td>Ninguna</td>
+                        <td>Reparación contador</td>
                         <td>
                             <a href="#" title="editar" class="btn btn-primary btn-circle btn-sm">
                                 <i class="far fa-edit"></i>
