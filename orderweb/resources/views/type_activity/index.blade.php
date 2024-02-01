@@ -23,20 +23,22 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>                   
-                    <tr>
-                        <td>1</td>
-                        <td>Tipo prueba</td>
-                        <td>
-                            <a href="#" title="editar" class="btn btn-primary btn-circle btn-sm">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" title="eliminar" class="btn btn-danger btn-circle btn-sm" 
-                                onclick="return delete();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>                    
+                <tbody>
+                    @foreach ($types as $type)                     
+                        <tr>
+                            <td>{{ $type['id'] }}</td>
+                            <td>{{ $type['description'] }}</td>
+                            <td>
+                                <a href="{{ route('type_activity.edit', $type['id']) }}" title="editar" class="btn btn-primary btn-circle btn-sm">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="{{ route('type_activity.destroy', $type['id']) }}" title="eliminar" class="btn btn-danger btn-circle btn-sm" 
+                                    onclick="return remove();">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>  
+                    @endforeach                  
                 </tbody>
             </table>
         </div>
@@ -45,18 +47,5 @@
 @endsection    
 
 @section('scripts')    
-
-    <script>
-        $(document).ready(function() {
-            $('#table_data').DataTable();
-        });
-
-        function delete() {
-            var x = confirm("¿Está seguro de que desea eliminar el registro?");
-            if (x)
-                return true;
-            else
-                return false;
-        }
-    </script>    
+    <script src="{{ asset('js/general.js') }}"></script>    
 @endsection

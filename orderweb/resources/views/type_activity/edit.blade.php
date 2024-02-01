@@ -9,12 +9,18 @@
 
     <div class="row">
         <div class="col-lg-12 mb-4">
-            <form action="#" method="POST">
+            <form action="{{ route('type_activity.update', $type_activity['id']) }}" method="PUT">
                 @csrf
-                <div class="row form-group">                    
-                    <div class="col-lg-12 mb-4">
+                <div class="row form-group">    
+                    <div class="col-lg-6 mb-4">
+                        <label for="id">Id</label>
+                        <input type="number" class="form-control" id="id" name="id" readonly 
+                            value="{{ $type_activity['id'] }}">
+                    </div>                
+                    <div class="col-lg-6 mb-4">
                         <label for="description">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <input type="text" class="form-control" id="description" name="description" required 
+                            value="{{ $type_activity['description'] }}">
                     </div>
                 </div>
                 <div class="row">

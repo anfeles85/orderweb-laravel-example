@@ -49,18 +49,5 @@
 @endsection    
 
 @section('scripts')    
-
-    <script>
-        $(document).ready(function() {
-            $('#table_data').DataTable();
-        });
-
-        function delete() {
-            var x = confirm("¿Está seguro de que desea eliminar el registro?");
-            if (x)
-                return true;
-            else
-                return false;
-        }
-    </script>    
+    <script src="{{ asset('js/general.js') }}"></script>     
 @endsection
