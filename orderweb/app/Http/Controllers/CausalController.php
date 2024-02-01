@@ -68,7 +68,7 @@ class CausalController extends Controller
         if($causal) //la causal existe
         {
             $causal->update($request->all());
-            session()->flash('message', 'Registro creado exitosamente');
+            session()->flash('message', 'Registro actualizado exitosamente');
         }
         else
         {

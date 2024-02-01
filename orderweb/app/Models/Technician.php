@@ -10,6 +10,8 @@ class Technician extends Model
     use HasFactory;
 
     protected $table = 'technician';
+    public $incrementing = false;
+    protected $primaryKey = 'document';
 
     protected $fillable = [
         'document',

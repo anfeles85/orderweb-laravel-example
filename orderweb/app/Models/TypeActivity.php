@@ -11,9 +11,7 @@ class TypeActivity extends Model
     
     protected $table = 'type_activity';
 
-    protected $fillable = [
-        'description'
-    ];
+    protected $fillable = ['description'];
 
     public function activities(){
         return $this->hasMany(Activity::class);

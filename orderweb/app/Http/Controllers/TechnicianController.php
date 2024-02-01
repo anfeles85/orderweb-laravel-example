@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Observation;
+use App\Models\Technician;
 use Illuminate\Http\Request;
 
-class ObservationController extends Controller
+class TechnicianController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $observations = Observation::all();
-        return view('observation.index', compact('observations'));
+        $technicians = Technician::all();
+        return view('technician.index', compact('technicians'));
     }
 
     /**
@@ -21,7 +21,7 @@ class ObservationController extends Controller
      */
     public function create()
     {
-        return view('observation.create');
+        return view('technician.create');
     }
 
     /**
@@ -29,9 +29,9 @@ class ObservationController extends Controller
      */
     public function store(Request $request)
     {
-        $observation = Observation::create($request->all());
+        $technician = Technician::create($request->all());
         session()->flash('message', 'Registro creado exitosamente');
-        return redirect()->route('observation.index');
+        return redirect()->route('technician.index');
     }
 
     /**
@@ -46,28 +46,31 @@ class ObservationController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        $observation = Observation::find($id);
-        if($observation) 
+    {        
+        $technician = Technician::where('document', '=', $id)->first();
+        if($technician) 
         {
-            return view('observation.edit', compact('observation'));
+            return view('technician.edit', compact('technician'));
         }
         else
         {
             session()->flash('warning', 'No se encuentra el registro solicitado');
-            return redirect()->route('observation.index');
-        } 
+            return redirect()->route('technician.index');
+        }   
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $document)
     {
-        $observation = Observation::find($id);
-        if($observation) 
+        $technician = Technician::where('document', '=', $document)->first();       
+        if($technician) 
         {
-            $observation->update($request->all());
+            $technician->name = $request->name;
+            $technician->especiality = $request->especiality;
+            $technician->phone = $request->phone;
+            $technician->save();            
             session()->flash('message', 'Registro actualizado exitosamente');
         }
         else
@@ -75,7 +78,7 @@ class ObservationController extends Controller
             session()->flash('warning', 'No se encuentra el registro solicitado');
         }
         
-        return redirect()->route('observation.index');
+        return redirect()->route('technician.index');
     }
 
     /**
@@ -83,10 +86,10 @@ class ObservationController extends Controller
      */
     public function destroy(string $id)
     {
-        $observation = Observation::find($id);
-        if($observation) 
+        $technician = Technician::where('document', '=', $id)->first();
+        if($technician) 
         {
-            $observation->delete();
+            $technician->delete();
             session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
@@ -94,6 +97,6 @@ class ObservationController extends Controller
             session()->flash('warning', 'No se encuentra el registro solicitado');            
         } 
 
-        return redirect()->route('observation.index');
+        return redirect()->route('technician.index');
     }
 }

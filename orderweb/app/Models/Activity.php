@@ -29,7 +29,7 @@ class Activity extends Model
 
     public function type_activity()
     {
-        return $this->belongsTo(TypeActivity::class);
+        return $this->belongsTo(TypeActivity::class, 'type_id');
     }
 
     public function orders(){

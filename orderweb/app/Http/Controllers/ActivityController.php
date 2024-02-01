@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Observation;
+use App\Models\Activity;
+use App\Models\Technician;
+use App\Models\TypeActivity;
 use Illuminate\Http\Request;
 
-class ObservationController extends Controller
+class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $observations = Observation::all();
-        return view('observation.index', compact('observations'));
+        $activities = Activity::all();
+        //$activities = Activity::with(['technician', 'type_activity'])->get();
+        return view('activity.index', compact('activities'));
     }
 
     /**
@@ -21,7 +24,9 @@ class ObservationController extends Controller
      */
     public function create()
     {
-        return view('observation.create');
+        $technicians = Technician::all();
+        $types = TypeActivity::all();
+        return view('activity.create', compact('technicians', 'types'));
     }
 
     /**
@@ -29,9 +34,9 @@ class ObservationController extends Controller
      */
     public function store(Request $request)
     {
-        $observation = Observation::create($request->all());
+        $activity = Activity::create($request->all());
         session()->flash('message', 'Registro creado exitosamente');
-        return redirect()->route('observation.index');
+        return redirect()->route('activity.index');
     }
 
     /**
@@ -47,16 +52,18 @@ class ObservationController extends Controller
      */
     public function edit(string $id)
     {
-        $observation = Observation::find($id);
-        if($observation) 
+        $activity = Activity::find($id);
+        if($activity) 
         {
-            return view('observation.edit', compact('observation'));
+            $technicians = Technician::all();
+            $types = TypeActivity::all();
+            return view('activity.edit', compact('activity','technicians', 'types'));
         }
         else
         {
             session()->flash('warning', 'No se encuentra el registro solicitado');
-            return redirect()->route('observation.index');
-        } 
+            return redirect()->route('activity.index');
+        }  
     }
 
     /**
@@ -64,10 +71,10 @@ class ObservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $observation = Observation::find($id);
-        if($observation) 
+        $activity = Activity::find($id);
+        if($activity) 
         {
-            $observation->update($request->all());
+            $activity->update($request->all());
             session()->flash('message', 'Registro actualizado exitosamente');
         }
         else
@@ -75,7 +82,7 @@ class ObservationController extends Controller
             session()->flash('warning', 'No se encuentra el registro solicitado');
         }
         
-        return redirect()->route('observation.index');
+        return redirect()->route('activity.index');
     }
 
     /**
@@ -83,17 +90,17 @@ class ObservationController extends Controller
      */
     public function destroy(string $id)
     {
-        $observation = Observation::find($id);
-        if($observation) 
+        $activity = Activity::find($id);
+        if($activity) 
         {
-            $observation->delete();
+            $activity->delete();
             session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
         {
-            session()->flash('warning', 'No se encuentra el registro solicitado');            
-        } 
-
-        return redirect()->route('observation.index');
+            session()->flash('warning', 'No se encuentra el registro solicitado');
+        }
+        
+        return redirect()->route('activity.index');
     }
 }
