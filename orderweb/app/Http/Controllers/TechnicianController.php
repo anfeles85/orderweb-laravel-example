@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Technician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TechnicianController extends Controller
 {
+    private $rules = [
+        'document' => 'required|integer|max:99999999999999999999|min:1',
+        'name' => 'required|string|max:80|min:3',
+        'especiality' => 'string|max:50|min:3',
+        'phone' => 'string|max:30'
+    ];
+
+    private $traductionAttributes = array(
+        'document' => 'documento',
+        'name' => 'nombre',
+        'especiality' => 'especialidad',
+        'phone' => 'teléfono' 
+    );
+    
     /**
      * Display a listing of the resource.
      */
@@ -29,6 +44,22 @@ class TechnicianController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAttributes);
+        if ($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('technician.create')->withInput()->withErrors($errors);
+        }        
+        
+        //document no es pk autoinc, por tanto se consulta si ya existe un técnico con ese document
+        $technician = Technician::where('document', '=', $request->document)->first();
+        if($technician) 
+        {
+            session()->flash('error', 'Ya existe un técnico con ese documento');
+            return redirect()->route('technician.create')->withInput();
+        }
+
         $technician = Technician::create($request->all());
         session()->flash('message', 'Registro creado exitosamente');
         return redirect()->route('technician.index');
@@ -64,6 +95,14 @@ class TechnicianController extends Controller
      */
     public function update(Request $request, string $document)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAttributes);
+        if ($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('technician.edit', $document)->withInput()->withErrors($errors);
+        } 
+        
         $technician = Technician::where('document', '=', $document)->first();       
         if($technician) 
         {

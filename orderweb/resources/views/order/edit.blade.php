@@ -71,11 +71,88 @@
                 </div>                                
             </form>
 
+            <hr>
+
             <div class="row">
                 <div class="col-lg-12 mb-4">
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fa-solid fa-lightbulb"></i> Para añadir actividades a la orden primero debe crearla y
-                         luego dar clic en la acción Editar.
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Añadir/Retirar actividades</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group"> 
+                                <div class="col-lg-6 mb-4">
+                                    <label for="activity_id">Actividades disponibles</label>
+                                    <table id="table_data" class="table table-striped table-hover">                                        
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Descripción</th>
+                                                <th>Horas</th>
+                                                <th>Agregar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(count($activitiesNotInOrder) == 0)
+                                                <tr>
+                                                    <td colspan="4">
+                                                        No existen actividades disponibles
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                @foreach ($activitiesNotInOrder as $act)     
+                                                    <tr>
+                                                        <td>{{ $act->id }}</td>
+                                                        <td>{{ $act->description  }}</td>
+                                                        <td>{{ $act->hours  }}</td>
+                                                        <td>
+                                                            <a href="{{ route('order.add_activity', [$order['id'], $act->id]) }}" title="agregar" class="btn btn-primary btn-circle btn-sm">
+                                                                <i class="fas fa-fw fa-plus"></i>
+                                                            </a>                                                        
+                                                        </td>
+                                                    </tr> 
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>                                    
+                                </div>                                
+                                <div class="col-lg-6 mb-4">
+                                    <label for="table_data">Actividades agregadas</label>
+                                    <table id="table_data" class="table table-striped table-hover">                                        
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Descripción</th>
+                                                <th>Horas</th>
+                                                <th>Retirar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(count($activitiesAdded) == 0)
+                                                <tr>
+                                                    <td colspan="4">
+                                                        No existen actividades agregadas
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                @foreach ($activitiesAdded as $act)     
+                                                    <tr>
+                                                        <td>{{ $act['id'] }}</td>
+                                                        <td>{{ $act['description'] }}</td>
+                                                        <td>{{ $act['hours'] }}</td>
+                                                        <td>
+                                                            <a href="{{ route('order.remove_activity', [$order['id'], $act['id']]) }}" title="retirar" class="btn btn-danger btn-circle btn-sm">
+                                                                <i class="fas fa-fw fa-minus"></i>
+                                                            </a>                                                        
+                                                        </td>
+                                                    </tr> 
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table> 
+                                </div>
+                            </div>    
+                        </div>
                     </div>
                 </div>
             </div>            

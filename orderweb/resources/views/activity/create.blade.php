@@ -14,7 +14,7 @@
                 <div class="row form-group">                    
                     <div class="col-lg-6 mb-4">
                         <label for="description">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description" required value='{{ old('description') }}'>
+                        <input type="text" class="form-control" id="description" name="description" required value="{{ old('description') }}">
                     </div>
                     <div class="col-lg-6 mb-4">
                         <label for="hours">Horas estimadas</label>
