@@ -15,7 +15,7 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jhon Doe</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                         <img src="{{ asset('img/undraw_profile.svg') }}" class="img-profile rounded-circle" alt="Perfil" />
                     </a>
                     <!-- Dropdown - User Information -->
@@ -31,7 +31,7 @@
                             </a>                                               
                             <div class="dropdown-divider"></div>
                             
-                            <a href="#" id="logout" class="dropdown-item" >Cerrar sesión</a>                               
+                            <a href="{{ route('auth.logout') }}" id="logout" class="dropdown-item" >Cerrar sesión</a>                               
                     </div>
                 </li>
 

@@ -63,7 +63,7 @@ class CausalController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    {   
         $causal = Causal::find($id);
         if($causal) //la causal existe
         {
