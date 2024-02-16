@@ -28,48 +28,52 @@
                 Ordenes
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
-                   aria-expanded="true" aria-controls="collapse1">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Ordenes</span>
-                </a>
-                <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('order.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('order.create') }}">Crear</a>                        
+            @can('admin-supervisor')
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
+                    aria-expanded="true" aria-controls="collapse1">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Ordenes</span>
+                    </a>
+                    <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('order.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('order.create') }}">Crear</a>                        
+                        </div>
                     </div>
-                </div>
-            </li> 
+                </li> 
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
-                   aria-expanded="true" aria-controls="collapse2">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Causales</span>
-                </a>
-                <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('causal.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('causal.create') }}">Crear</a>
+            @can('administrador')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
+                    aria-expanded="true" aria-controls="collapse2">
+                        <i class="fas fa-fw fa-plus"></i>
+                        <span>Causales</span>
+                    </a>
+                    <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('causal.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('causal.create') }}">Crear</a>
+                        </div>
                     </div>
-                </div>
-            </li> 
+                </li>             
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-                   aria-expanded="true" aria-controls="collapse3">
-                    <i class="fas fa-fw fa-minus"></i>
-                    <span>Observaciones</span>
-                </a>
-                <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('observation.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('observation.create') }}">Crear</a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+                    aria-expanded="true" aria-controls="collapse3">
+                        <i class="fas fa-fw fa-minus"></i>
+                        <span>Observaciones</span>
+                    </a>
+                    <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('observation.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('observation.create') }}">Crear</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider"/>
@@ -79,56 +83,62 @@
                 Actividades
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
-                   aria-expanded="true" aria-controls="collapse4">
-                    <i class="fas fa-fw fa-hammer"></i>
-                    <span>Actividades</span>
-                </a>
-                <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('activity.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('activity.create') }}">Crear</a>
+            @can('admin-supervisor')
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+                    aria-expanded="true" aria-controls="collapse4">
+                        <i class="fas fa-fw fa-hammer"></i>
+                        <span>Actividades</span>
+                    </a>
+                    <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('activity.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('activity.create') }}">Crear</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-                   aria-expanded="true" aria-controls="collapse5">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Tipos de actividad</span>
-                </a>
-                <div id="collapse5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('type_activity.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('type_activity.create') }}">Crear</a>
+            @can('administrador')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+                    aria-expanded="true" aria-controls="collapse5">
+                        <i class="fas fa-fw fa-list"></i>
+                        <span>Tipos de actividad</span>
+                    </a>
+                    <div id="collapse5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('type_activity.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('type_activity.create') }}">Crear</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider"/>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Técnicos
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6"
-                   aria-expanded="true" aria-controls="collapse6">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Técnicos</span>
-                </a>
-                <div id="collapse6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('technician.index') }}">Consultar</a>
-                        <a class="collapse-item" href="{{ route('technician.create') }}">Crear</a>
-                    </div>
+            @can('supervisor')
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Técnicos
                 </div>
-            </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6"
+                    aria-expanded="true" aria-controls="collapse6">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Técnicos</span>
+                    </a>
+                    <div id="collapse6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('technician.index') }}">Consultar</a>
+                            <a class="collapse-item" href="{{ route('technician.create') }}">Crear</a>
+                        </div>
+                    </div>
+                </li>
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
