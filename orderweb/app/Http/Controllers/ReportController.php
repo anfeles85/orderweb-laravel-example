@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Technician;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Action;
 
 class ReportController extends Controller
 {
@@ -13,7 +15,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('reports.index');
+        $technicians = Technician::all();
+        return view('reports.index', compact('technicians'));
     }
 
     /**
@@ -27,6 +30,18 @@ class ReportController extends Controller
         );
         $pdf = Pdf::loadView('reports.export_technicians', $data)->setPaper('letter', 'portrait');
         return $pdf->download('Technicians.pdf');    
+    }
+
+    public function export_activities_by_technician(Request $request)
+    {
+        $technician = Technician::where('document', '=', $request['technician_id'])->first();
+        $activities = Activity::where('technician_id', '=', $request['technician_id'])->get();
+        $data = array(
+            'technician' => $technician,
+            'activities' => $activities
+        );
+        $pdf = Pdf::loadView('reports.export_activities_by_technician', $data)->setPaper('letter', 'portrait');
+        return $pdf->download('ActivitiesByTechnician.pdf');  
     }
 
     /**

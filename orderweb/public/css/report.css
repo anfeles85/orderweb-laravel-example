@@ -10,6 +10,19 @@ body{
     border-color: #ffffff;
 }
 
+#ReportTableInfo {    
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+    border: 0px;
+}
+
+#ReportTableInfo td, #ReportTableInfo th {
+    border: 0px;
+    padding: 8px;
+    text-align: center;
+}
+
 #ReportTable td, #ReportTable th {
     border: 1px solid;
     padding: 8px;
