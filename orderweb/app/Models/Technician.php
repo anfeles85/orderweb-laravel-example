@@ -9,4 +9,10 @@ class Technician extends Model
 {
     use HasFactory;
     protected $table = 'technician';
+    protected $fillable = [
+        'document',
+        'name',
+        'speciality',
+        'phone'
+    ];
 }
