@@ -13,4 +13,14 @@ class OrderActivity extends Model
         'order_id',
         'activity_id'
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class, 'activity_id');
+    }
 }

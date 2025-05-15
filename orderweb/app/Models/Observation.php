@@ -12,4 +12,9 @@ class Observation extends Model
     protected $fillable = [
         'description'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
