@@ -26,23 +26,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2025-05-20</td>
-                        <td>Callejón 7 muertos</td>
-                        <td>TULUA</td>
-                        <td>Suspensión</td>
-                        <td>Ninguna</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-circle btn-sm" title="Editar">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
-                                onclick="return remove();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ $order['id'] }}</td>
+                            <td>{{ $order['legalization_date'] }}</td>
+                            <td>{{ $order['address'] }}</td>
+                            <td>{{ $order['city'] }}</td>
+                            <td>{{ $order->causal->description }}</td>
+                            <td>@if($order->observation) {{ $order->observation->description }} @endif</td>
+                            <td>
+                                <a href="{{ route('order.edit', $order['id']) }}" class="btn btn-primary btn-circle btn-sm" title="Editar">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="{{ route('order.destroy', $order['id']) }}" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
+                                    onclick="return remove();">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>

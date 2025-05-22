@@ -25,22 +25,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1116</td>
-                        <td>Elvis Teck</td>
-                        <td>Construcción</td>
-                        <td>225</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-circle btn-sm" title="Editar">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
-                                onclick="return remove();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($technicians as $technician)
+                        <tr>
+                            <td>{{ $technician['id'] }}</td>
+                            <td>{{ $technician['document'] }}</td>
+                            <td>{{ $technician['name'] }}</td>
+                            <td>{{ $technician['speciality'] }}</td>
+                            <td>{{ $technician['phone'] }}</td>
+                            <td>
+                                <a href="{{ route('technician.edit', $technician['id']) }}" class="btn btn-primary btn-circle btn-sm" title="Editar">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="{{ route('technician.destroy', $technician['id']) }}" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
+                                    onclick="return remove();">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>

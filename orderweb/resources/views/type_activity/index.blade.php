@@ -22,19 +22,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Tipo prueba</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-circle btn-sm" title="Editar">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
-                                onclick="return remove();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($types as $type)
+                        <tr>
+                            <td>{{ $type['id'] }}</td>
+                            <td>{{ $type['description'] }}</td>
+                            <td>
+                                <a href="{{ route('type_activity.edit', $type['id']) }}" class="btn btn-primary btn-circle btn-sm" title="Editar">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="{{ route('type_activity.destroy', $type['id']) }}" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
+                                    onclick="return remove();">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
