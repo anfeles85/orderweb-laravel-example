@@ -29,8 +29,8 @@ class Order extends Model
 
     public function activities()
     {
-        return $this->belongsToMany(Activity::class);
-        /*return $this->belongsToMany(Activity::class, 'order_activity', 
-                                            'order_id', 'activity_id');*/
+        //return $this->belongsToMany(Activity::class);
+        return $this->belongsToMany(Activity::class, 'order_activity', 
+                                            'order_id', 'activity_id');
     }
 }
