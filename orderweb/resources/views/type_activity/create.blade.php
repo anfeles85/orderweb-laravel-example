@@ -2,6 +2,7 @@
 @section('title', 'Crear tipo actividad')
 @section('header', 'Crear tipo actividad')
 @section('content')
+    @include('templates.messages')
     <div class="row">
         <div class="col-lg-12 mb-4">
             <form action="{{ route('type_activity.store') }}" method="POST">
@@ -9,7 +10,8 @@
                 <div class="row form-group">
                     <div class="col-lg-12 mb-4">
                         <label for="description">Descripción</label>
-                        <input type="text" class="form-control" name="description" id="description" required>
+                        <input type="text" class="form-control" name="description" 
+                        id="description" required value="{{ old('description') }}">
                     </div>
                 </div>
                 <div class="row">

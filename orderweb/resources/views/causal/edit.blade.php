@@ -2,6 +2,8 @@
 @section('title', 'Editar causal')
 @section('header', 'Editar causal')
 @section('content')
+    @include('templates.messages')
+
     <div class="row">
         <div class="col-lg-12 mb-4">
             <form action="{{ route('causal.update', $causal['id']) }}" method="POST">
