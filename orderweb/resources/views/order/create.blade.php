@@ -2,6 +2,7 @@
 @section('title', 'Crear órdenes')
 @section('header', 'Crear órdenes')
 @section('content')
+    @include('templates.messages')
     <div class="row">
         <div class="col-lg-12 mb-4">
             <form action="{{ route('order.store') }}" method="POST">
@@ -9,21 +10,24 @@
                 <div class="row form-group">
                     <div class="col-lg-6 mb-4">
                         <label for="legalization_date">Fecha legalización</label>
-                        <input type="date" class="form-control" name="legalization_date" id="legalization_date" required>
+                        <input type="date" class="form-control" name="legalization_date" 
+                        id="legalization_date" required value="{{ old('legalization_date') }}">
                     </div>
                     <div class="col-lg-6 mb-4">
                         <label for="address">Dirección</label>
-                        <input type="text" class="form-control" name="address" id="address" required>
+                        <input type="text" class="form-control" name="address" id="address" 
+                        required value="{{ old('address') }}">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-lg-4 mb-4">
                         <label for="city">Ciudad</label>
-                        <select name="city" id="city" class="form-control" required>
-                            <option value="TULUA">TULUA</option>
-                            <option value="CALI">CALI</option>
-                            <option value="BUGA">BUGA</option>
-                            <option value="PALMIRA">PALMIRA</option>
+                        <select name="city" id="city" class="form-control" required value="{{ old('city') }}">
+                            @foreach ($cities as $city)
+                                <option value="{{ $city['value'] }}" @if(old('city') == $city['name']) selected @endif>
+                                    {{ $city['name'] }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-lg-4 mb-4">
@@ -31,7 +35,10 @@
                         <select name="causal_id" id="causal_id" class="form-control" required>
                             <option value="">Seleccione</option>
                             @foreach ($causals as $causal)
-                                <option value="{{ $causal['id'] }}">{{ $causal['description'] }}</option>
+                                <option value="{{ $causal['id'] }}" 
+                                @if(old('causal_id') == $causal['id']) selected @endif>
+                                    {{ $causal['description'] }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -40,7 +47,10 @@
                         <select name="observation_id" id="observation_id" class="form-control">
                             <option value="">Seleccione</option>
                              @foreach ($observations as $observation)
-                                <option value="{{ $observation['id'] }}">{{ $observation['description'] }}</option>
+                                <option value="{{ $observation['id'] }}" 
+                                @if(old('observation_id') == $observation['id']) selected @endif>
+                                    {{ $observation['description'] }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

@@ -6,9 +6,24 @@ use App\Models\Activity;
 use App\Models\Technician;
 use App\Models\TypeActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ActivityController extends Controller
 {
+    private $rules = [
+        'description' => 'required|string|min:3|max:100',
+        'hours' => 'required|numeric|min:1|max:9999999999',
+        'technician_id' => 'required|numeric|min:1|max:99999999999999999999',
+        'type_activity_id' => 'required|numeric|min:1|max:99999999999999999999'
+    ];
+
+    private $traductionAttributes = [
+        'description' => 'descripción',
+        'hours' => 'horas',
+        'technician_id' => 'técnico',
+        'type_activity_id' => 'tipo de actividad' 
+    ];
+    
     /**
      * Display a listing of the resource.
      */
@@ -33,6 +48,15 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        $validator =  Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAttributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('activity.create')
+                            ->withInput()->withErrors($errors);
+        }
+
         $activity = Activity::create($request->all());
         session()->flash('message', 'Registro creado exitosamente');
         return redirect()->route('activity.index');
@@ -62,6 +86,15 @@ class ActivityController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validator =  Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAttributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('activity.edit', $id)
+                            ->withInput()->withErrors($errors);
+        }
+        
         $activity = Activity::find($id);
         if($activity) 
         {

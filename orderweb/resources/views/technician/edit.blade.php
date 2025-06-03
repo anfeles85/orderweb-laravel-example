@@ -2,6 +2,7 @@
 @section('title', 'Editar técnico')
 @section('header', 'Editar técnico')
 @section('content')
+    @include('templates.messages')
     <div class="row">
         <div class="col-lg-12 mb-4">
             <form action="{{ route('technician.update', $technician['id']) }}" method="POST">
