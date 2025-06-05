@@ -139,24 +139,24 @@
                     </li>
                 @endcan
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Reportes
-                </div>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7"
-                    aria-expanded="true" aria-controls="collapse7">
-                        <i class="fas fa-fw fa-wrench"></i>
-                        <span>Reportes</span>
-                    </a>
-                    <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">Consultar</a>
-                        </div>
+                @can('administrador')
+                    <div class="sidebar-heading">
+                        Reportes
                     </div>
-                </li>
-           
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7"
+                        aria-expanded="true" aria-controls="collapse7">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Reportes</span>
+                        </a>
+                        <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="{{ route('reports.index') }}">Consultar</a>
+                            </div>
+                        </div>
+                    </li>
+                @endcan    
 
 
             <!-- Divider -->
