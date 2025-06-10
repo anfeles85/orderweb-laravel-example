@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Order;
 use App\Models\Technician;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -58,5 +59,28 @@ class ReportController extends Controller
                 ]); 
                 
         return $pdf->download('ActivitiesByTechnician-' . $request['technician_id'] . '.pdf');
+    }
+
+    /**
+     * reporte que genera listado ordenes en un rango de fechas 
+     */
+    public function export_orders_by_date_range(Request $request)
+    {
+        $orders = Order::whereBetween('legalization_date', [$request['date1'], $request['date2']])->get();
+                
+        $data = array(
+            'orders' => $orders,
+            'date1' => $request['date1'],
+            'date2' => $request['date2']
+        );
+
+        $pdf = Pdf::loadView('reports.export_orders_by_date_range', $data)
+                ->setPaper('letter', 'portrait')
+                ->setOptions([
+                    'defaultFont'=>'sans-serif', 
+                    'isRemoteEnabled'=>true
+                ]); 
+                
+        return $pdf->download('OrdersByDate.pdf');
     }
 }
