@@ -36,3 +36,16 @@ body{
     font-size: smaller;
     font-style: italic;
 }
+
+#reportTableInfo {    
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+    border: 0px;
+}
+
+#reportTableInfo td, #reportTableInfo th {
+    border: 0px;
+    padding: 8px;
+    text-align: center;
+}
